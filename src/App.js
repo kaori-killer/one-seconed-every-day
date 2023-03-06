@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import './App.css';
 import './DiaryEditor';
 import DiaryEditor from './DiaryEditor';
@@ -7,25 +9,27 @@ const dummyList = [
   {
     id: 1,
     date: "2023-03-06",
-    video: "C:\\fakepath\\test1.mp4",
+    videoUrl: 'blob:http://localhost:3000/10865c73-05d4-4317-9cca-0493796b7bbc',
   },
   {
     id: 2,
     date: "2023-03-07",
-    video: "C:\\fakepath\\test2.mp4",
+    videoUrl: "C:\\fakepath\\test2.mp4",
   },
   {
     id: 3,
     date: "2023-03-08",
-    video: "C:\\fakepath\\test3.mp4",
+    videoUrl: "C:\\fakepath\\test3.mp4",
   },
 ]
 
 function App() {
+  const [diaryList, setDiaryList] = useState([]);
+
   return (
     <div className="App">
-      <DiaryEditor />
-      <DiaryList diaryList={dummyList}/>
+      <DiaryEditor diaryList={diaryList} setDiaryList={setDiaryList}/>
+      <DiaryList diaryList={diaryList} />
     </div>
   );
 }

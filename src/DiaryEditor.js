@@ -1,20 +1,27 @@
 import { useState, useRef } from "react";
-import App from './App';
 
-const DiaryEditor = () => {
+const DiaryEditor = ({diaryList, setDiaryList}) => {
 
     const dateInput = useRef();
-    const videoInput = useRef();
+    const videoUrlInput = useRef();
 
     const [state, setState] = useState({
         date: "2023-03-06",
-        video: ""
+        videoUrl: ""
     });
 
     const handleChangeState = (e) => {
+        let newState = e.target.value;
+
+        if(e.target.name === "videoUrl") {
+            const file = e.target.files[0];
+            newState = URL.createObjectURL(file);
+            console.log(file, newState);
+        }
+
         setState({
             ...state, 
-            [e.target.name]: e.target.value,
+            [e.target.name]: newState,
         });
     }
 
@@ -23,12 +30,13 @@ const DiaryEditor = () => {
             dateInput.current.focus();
             return;
         }
-        if(state.video === "") {
-            videoInput.current.focus();
+        if(state.videoUrl === "") {
+            videoUrlInput.current.focus();
             return;
         }
 
-        console.log("성공");
+        diaryList.push(state);
+        setDiaryList(diaryList);
     }
 
     return (
@@ -45,10 +53,10 @@ const DiaryEditor = () => {
             </div>
             <div>
                 <input 
-                    ref={videoInput}
-                    name="video"
+                    ref={videoUrlInput}
+                    name="videoUrl"
                     type="file" 
-                    accept="video/mp4,video/mkv, video/x-m4v,video/*"
+                    accept="video/*"
                     onChange={handleChangeState}
                 />
             </div>

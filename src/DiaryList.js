@@ -1,7 +1,5 @@
 const DiaryList = ({ diaryList }) => {
 
-    console.log(diaryList)
-
     return (
         <div className="DiaryList">
             <h2>1초 목록</h2>
@@ -11,8 +9,8 @@ const DiaryList = ({ diaryList }) => {
                     return (
                         <div key={it.id}>
                             <p>{it.date}</p>
-                            <video>
-                                <source src={it.video} type="video"></source>
+                            <video controls>
+                                <source src={it.videoUrl} type="video/mp4"></source>
                             </video>
                         </div>
                     );
@@ -21,5 +19,9 @@ const DiaryList = ({ diaryList }) => {
         </div>
     );
 }
+
+DiaryList.defaultProps = {
+    diaryList: [],
+};
 
 export default DiaryList;
