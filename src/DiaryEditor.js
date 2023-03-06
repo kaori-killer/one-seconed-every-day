@@ -17,8 +17,8 @@ const DiaryEditor = () => {
                     defaultValue={state.date} 
                     onChange={(e)=>
                         setState({
+                            ...state, 
                             date: e.target.value,
-                            video: state.video
                         })
                     }
                 />
@@ -30,7 +30,7 @@ const DiaryEditor = () => {
                     accept="video/mp4,video/mkv, video/x-m4v,video/*"
                     onChange={(e)=>
                         setState({
-                            date: state.date, 
+                            ...state, 
                             video: e.target.value
                         })
                     }
