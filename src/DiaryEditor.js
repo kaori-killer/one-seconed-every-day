@@ -7,6 +7,13 @@ const DiaryEditor = () => {
         video: ""
     })
 
+    const handleChangeState = (e) => {
+        setState({
+            ...state, 
+            [e.target.name]: e.target.value,
+        })
+    }
+
     return (
         <div className="DiaryEditor">
             <h2>오늘의 1초</h2>
@@ -15,12 +22,7 @@ const DiaryEditor = () => {
                     name="date"
                     type="date" 
                     defaultValue={state.date} 
-                    onChange={(e)=>
-                        setState({
-                            ...state, 
-                            date: e.target.value,
-                        })
-                    }
+                    onChange={handleChangeState}
                 />
             </div>
             <div>
@@ -28,12 +30,7 @@ const DiaryEditor = () => {
                     name="video"
                     type="file" 
                     accept="video/mp4,video/mkv, video/x-m4v,video/*"
-                    onChange={(e)=>
-                        setState({
-                            ...state, 
-                            video: e.target.value
-                        })
-                    }
+                    onChange={handleChangeState}
                 />
             </div>
         </div>
