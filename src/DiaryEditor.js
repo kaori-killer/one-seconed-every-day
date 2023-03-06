@@ -3,7 +3,7 @@ import App from './App';
 
 const DiaryEditor = () => {
     const [state, setState] = useState({
-        date: "",
+        date: "2023-03-06",
         video: ""
     })
 
@@ -13,6 +13,8 @@ const DiaryEditor = () => {
             [e.target.name]: e.target.value,
         })
     }
+
+    const handleSubmit = () => { console.log("저장 성공")}
 
     return (
         <div className="DiaryEditor">
@@ -32,6 +34,9 @@ const DiaryEditor = () => {
                     accept="video/mp4,video/mkv, video/x-m4v,video/*"
                     onChange={handleChangeState}
                 />
+            </div>
+            <div>
+                <button onClick={handleSubmit}>저장하기</button>
             </div>
         </div>
     );
