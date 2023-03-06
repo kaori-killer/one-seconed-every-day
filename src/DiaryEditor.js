@@ -16,7 +16,6 @@ const DiaryEditor = ({diaryList, setDiaryList}) => {
         if(e.target.name === "videoUrl") {
             const file = e.target.files[0];
             newState = URL.createObjectURL(file);
-            console.log(file, newState);
         }
 
         setState({

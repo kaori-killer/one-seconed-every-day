@@ -15,3 +15,20 @@
   padding: 10px;
   cursor: pointer;
 }
+
+.DiaryList {
+  border: 1px solid gray;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.DiaryList h2 {
+  text-align: center;
+}
+
+.DiaryItem {
+  background-color: gray;
+  margin-bottom: 10px;
+  padding: 20px;
+}
+
