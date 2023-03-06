@@ -22,7 +22,7 @@ const DiaryEditor = ({ onCreate }) => {
             ...state, 
             [e.target.name]: newState,
         });
-    }
+    };
 
     const handleSubmit = () => { 
         if(state.date === "") {
@@ -34,7 +34,14 @@ const DiaryEditor = ({ onCreate }) => {
             return;
         }
         onCreate(state.date, state.videoUrl);
-    }
+
+        console.log("저장 성공");
+
+        setState({
+            date: "2023-03-06",
+            videoUrl: ""        
+        });
+    };
 
     return (
         <div className="DiaryEditor">
@@ -44,7 +51,7 @@ const DiaryEditor = ({ onCreate }) => {
                     ref={dateInput}
                     name="date"
                     type="date" 
-                    defaultValue={state.date} 
+                    value={state.date} 
                     onChange={handleChangeState}
                 />
             </div>
