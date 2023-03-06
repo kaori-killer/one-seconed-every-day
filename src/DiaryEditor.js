@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 
-const DiaryEditor = ({diaryList, setDiaryList}) => {
+const DiaryEditor = ({ onCreate }) => {
 
     const dateInput = useRef();
     const videoUrlInput = useRef();
@@ -33,9 +33,7 @@ const DiaryEditor = ({diaryList, setDiaryList}) => {
             videoUrlInput.current.focus();
             return;
         }
-
-        diaryList.push(state);
-        setDiaryList(diaryList);
+        onCreate(state.date, state.videoUrl);
     }
 
     return (

@@ -30,5 +30,10 @@
   background-color: gray;
   margin-bottom: 10px;
   padding: 20px;
+  width: 300px;
 }
 
+.DiaryItem video {
+  width: 300px;
+  height: 300px;
+}
