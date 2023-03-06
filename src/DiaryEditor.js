@@ -1,17 +1,40 @@
 import { useState } from "react";
+import App from './App';
 
 const DiaryEditor = () => {
-    const [date, setDate] = useState("2023-03-06");
-    const [video, setVideo] = useState("");
+    const [state, setState] = useState({
+        date: "",
+        video: ""
+    })
 
     return (
         <div className="DiaryEditor">
             <h2>오늘의 1초</h2>
             <div>
-                <input defaultValue={date} onChange={(e)=>setDate(e.target.value)}type="date" />
+                <input 
+                    name="date"
+                    type="date" 
+                    defaultValue={state.date} 
+                    onChange={(e)=>
+                        setState({
+                            date: e.target.value,
+                            video: state.video
+                        })
+                    }
+                />
             </div>
             <div>
-                <input onChange={(e)=>setVideo(e.target.value)} type="file" accept="video/mp4,video/mkv, video/x-m4v,video/*"/>
+                <input 
+                    name="video"
+                    type="file" 
+                    accept="video/mp4,video/mkv, video/x-m4v,video/*"
+                    onChange={(e)=>
+                        setState({
+                            date: state.date, 
+                            video: e.target.value
+                        })
+                    }
+                />
             </div>
         </div>
     );
