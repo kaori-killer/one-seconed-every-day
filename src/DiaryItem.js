@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import getAllowedVideoUrl from "./util/videoUrl";
+import getAllowedVideoUrl from "./utils/videoUrl";
 
 const DiaryItem = ( {id, date, videoUrl, onRemove, onEdit} ) => {
     

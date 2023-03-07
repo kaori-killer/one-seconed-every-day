@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import getAllowedVideoUrl from "./util/videoUrl";
+import getAllowedVideoUrl from "./utils/videoUrl";
 
 const DiaryEditor = ({ onCreate }) => {
 
