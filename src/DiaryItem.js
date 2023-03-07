@@ -19,41 +19,52 @@ const DiaryItem = ( {id, date, videoUrl, onRemove, onEdit} ) => {
         toggleIsEdit();
     }
 
+    const handleQuitEdit = () => {
+        toggleIsEdit();
+        setLocalDate(date);
+        setLocalVideoUrl(videoUrl);
+    }
+
     return (
         <div className="DiaryItem">
-            <div className="info">
-                <p>{date}</p>
-            </div>
             <div className="content">
+                <div className="info">
                 {isEdit ? (
-                    <>
                         <input
                             name="date"
                             type="date" 
                             value={localDate} 
                             onChange={(e)=>setLocalDate(e.target.value)}
                         />
-                        <input 
-                            name="videoUrl"
-                            type="file" 
-                            accept="video/*"
-                            onChange={(e)=>setLocalVideoUrl(getAllowedVideoUrl(e))}
-                        />
-                        <button onClick={toggleIsEdit}>수정 취소</button>
-                        <button onClick={handleEdit}>수정 완료</button>
-                    </>
-                ) : ( 
-                    <>
-                        <video controls>
-                            <source src={videoUrl} type="video/mp4"></source>
-                        </video>
-                        <button onClick={handleRemove}>삭제하기</button>
-                        <button onClick={toggleIsEdit}>수정하기</button>
-                    </>
-                )
-                }
+                    ) : (
+                            <p>{date}</p>
+                        )
+                    }
+                <div className="content">
+                    {isEdit ? (
+                        <>
+                            <input 
+                                name="videoUrl"
+                                type="file" 
+                                accept="video/*"
+                                onChange={(e)=>setLocalVideoUrl(getAllowedVideoUrl(e))}
+                            />
+                            <button onClick={handleQuitEdit}>수정 취소</button>
+                            <button onClick={handleEdit}>수정 완료</button>
+                        </>
+                    ) : (
+                        <>
+                            <video controls>
+                                <source src={videoUrl} type="video/mp4"></source>
+                            </video>
+                            <button onClick={handleRemove}>삭제하기</button>
+                            <button onClick={toggleIsEdit}>수정하기</button>
+                        </>
+                    )}
+                </div>
             </div>
         </div>
+    </div>
     );
 }
 
