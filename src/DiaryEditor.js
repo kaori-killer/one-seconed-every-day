@@ -39,7 +39,7 @@ const DiaryEditor = ({ onCreate }) => {
 
         setState({
             date: "2023-03-06",
-            videoUrl: ""        
+            videoUrl: state.videoUrl,       
         });
     };
 

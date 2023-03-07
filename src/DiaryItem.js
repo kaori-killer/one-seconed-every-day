@@ -1,4 +1,4 @@
-const DiaryItem = ( {date, videoUrl}) => {
+const DiaryItem = ( {id, date, videoUrl, onDelete} ) => {
     return (
         <div className="DiaryItem">
             <div className="info">
@@ -8,6 +8,7 @@ const DiaryItem = ( {date, videoUrl}) => {
                 <video controls>
                     <source src={videoUrl} type="video/mp4"></source>
                 </video>
+                <button onClick={()=>onDelete(id)}>삭제하기</button>
             </div>
         </div>
     );

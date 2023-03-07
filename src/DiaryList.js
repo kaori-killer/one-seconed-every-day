@@ -1,6 +1,6 @@
 import DiaryItem from './DiaryItem';
 
-const DiaryList = ({ diaryList }) => {
+const DiaryList = ({ diaryList, onDelete}) => {
     console.log(diaryList)
     return (
         <div className="DiaryList">
@@ -8,7 +8,7 @@ const DiaryList = ({ diaryList }) => {
             <h4>{diaryList.length}개의 영상이 있습니다.</h4>
             <div>
                 {diaryList.map((it) => {
-                    return <DiaryItem key={it.id} {...it}/>
+                    return <DiaryItem key={it.id} {...it} onDelete={onDelete}/>
                 })}
             </div>
         </div>
