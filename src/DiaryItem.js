@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import getAllowedVideoUrl from "./util/videoUrl";
 
 const DiaryItem = ( {id, date, videoUrl, onRemove, onEdit} ) => {
@@ -7,6 +7,8 @@ const DiaryItem = ( {id, date, videoUrl, onRemove, onEdit} ) => {
     const toggleIsEdit = () => setIsEdit(!isEdit);
     const [localDate, setLocalDate] = useState(date);
     const [localVideoUrl, setLocalVideoUrl] = useState(videoUrl);
+    const localDateInput = useRef();
+    const localVideoUrlInput = useRef();
 
     const handleRemove = () => {
         if(window.confirm("정말 삭제하시겠습니까?")){
@@ -15,8 +17,13 @@ const DiaryItem = ( {id, date, videoUrl, onRemove, onEdit} ) => {
     }
 
     const handleEdit = () => {
-        onEdit(id, localDate, localVideoUrl);
-        toggleIsEdit();
+        if(localDate === "") { localDateInput.current.focus(); return; }
+        if(localVideoUrl === "") { localVideoUrlInput.current.focus(); return; }
+        
+        if(window.confirm(`${id}번 째 기록을 수정하시겠습니까?`)){
+            onEdit(id, localDate, localVideoUrl);
+            toggleIsEdit();    
+        }
     }
 
     const handleQuitEdit = () => {
@@ -31,6 +38,7 @@ const DiaryItem = ( {id, date, videoUrl, onRemove, onEdit} ) => {
                 <div className="info">
                 {isEdit ? (
                         <input
+                            ref={localDateInput}
                             name="date"
                             type="date" 
                             value={localDate} 
@@ -43,7 +51,8 @@ const DiaryItem = ( {id, date, videoUrl, onRemove, onEdit} ) => {
                 <div className="content">
                     {isEdit ? (
                         <>
-                            <input 
+                            <input
+                                ref={localVideoUrlInput}
                                 name="videoUrl"
                                 type="file" 
                                 accept="video/*"
