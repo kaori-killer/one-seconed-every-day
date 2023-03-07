@@ -19,17 +19,20 @@ function App() {
     setData([newItem, ...data]);
   }
 
-  const onDelete = (targetId) => {
-    if(window.confirm("정말 삭제하시겠습니까?")){
-        const newDiaryList = data.filter((it)=>it.id !== targetId);
-        setData(newDiaryList);
-      }
+  const onRemove = (targetId) => {
+      const newDiaryList = data.filter((it)=>it.id !== targetId);
+      setData(newDiaryList);
+  }
+
+  const onEdit = (id, date, videoUrl) => {
+    const newDiaryList = data.map((it)=>it.id === id ? {id, date, videoUrl} : it)
+    setData(newDiaryList);
   }
 
   return (
     <div className="App">
       <DiaryEditor onCreate={onCreate} />
-      <DiaryList diaryList={data} onDelete={onDelete} />
+      <DiaryList diaryList={data} onRemove={onRemove} onEdit={onEdit} />
     </div>
   );
 }

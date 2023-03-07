@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import getAllowedVideoUrl from "./util/videoUrl";
 
 const DiaryEditor = ({ onCreate }) => {
 
@@ -11,12 +12,7 @@ const DiaryEditor = ({ onCreate }) => {
     });
 
     const handleChangeState = (e) => {
-        let newState = e.target.value;
-
-        if(e.target.name === "videoUrl") {
-            const file = e.target.files[0];
-            newState = URL.createObjectURL(file);
-        }
+        const newState = e.target.name === "videoUrl" ? getAllowedVideoUrl(e) : e.target.value;
 
         setState({
             ...state, 
